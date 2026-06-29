@@ -1,62 +1,58 @@
-# Elderly Care Assistant — Presentation & Demo Script
+# Elderly Care Assistant — Quick Demo Script
 
-This script guides a 3 to 4-minute presentation of the Elderly Care Assistant. It distinguishes between spoken narration and physical demo actions.
+This is a concise, 2-3 minute presentation script for the **Elderly Care Assistant**. Spoken narration is in blockquotes, and physical actions are in bold uppercase headers.
 
 ---
 
 ## ⏱️ Chronological Script
 
-### 🎬 0:00 - 0:30 | Hook & Problem Statement
-> "Welcome! Today, I am excited to present the **Elderly Care Assistant**—a safety-first AI concierge designed to help independent seniors manage their daily lives, and give family caregivers total peace of mind. As our loved ones age, coordinating routines, complex medication schedules, and doctor appointments becomes a major challenge. Mistakes can lead to dangerous health outcomes. We built a solution that combines multi-agent collaboration with a zero-trust safety framework to keep seniors healthy and caregivers in control."
+### 1. Hook & Problem (0:00 - 0:30)
+> "Hi everyone. Managing daily routines, complex medication schedules, and doctor visits for independent seniors is a massive challenge for family caregivers. Care coordination errors can lead to serious health issues. To solve this, we built the **Elderly Care Assistant**—a safety-first AI concierge that simplifies scheduling and care tracking while keeping caregivers securely in control."
 
 ---
 
-### 🏗️ 0:30 - 1:15 | Architecture Overview
-> "To support these tasks securely, we built a stateful workflow using the Google ADK 2.0 engine. At the center is a Care Coordinator agent. Rather than trying to do everything itself, the coordinator delegates specific duties to two specialized sub-agents: a Routine Manager and a Medication Tracker. All of these components read and write to a shared, validated state schema. Let's look at the playground to see how this system handles incoming requests."
+### 2. Architecture & Playground (0:30 - 1:00)
+> "Our solution is built on the Google ADK 2.0 engine. At its core, an orchestrator agent delegates specialized tasks to a Routine Manager and a Medication Tracker sub-agent. Let's jump into the interactive playground to see it in action."
 
-**[ACTION: Open the browser to http://127.0.0.1:18081 and point out the clean layout and the active agent nodes]**
+**[ACTION: Open your browser to http://127.0.0.1:18081 and show the web UI]**
 
 ---
 
-### 🛡️ 1:15 - 2:00 | Security & Safety-First Design
-> "Because this concierge handles sensitive medical and personal data, safety is integrated at the very entrance of our workflow graph. Every query goes through a strict Security Checkpoint node. This node automatically scrubs PII like Social Security Numbers and Medicare Claim Numbers, intercepts prompt injection jailbreak keywords, and blocks unauthorized medication dosage changes unless caregiver or physician consent is mentioned. Let's test this in real time."
+### 3. Security Checkpoint (1:00 - 1:30)
+> "Patient safety is paramount. Every user request first goes through a strict Security Checkpoint. This node automatically scrubs private data like SSNs, blocks prompt injections, and intercepts unauthorized medication dosage changes. Let's test it."
 
-**[ACTION: Copy and paste the following query into the playground input box and press enter]**
+**[ACTION: Copy, paste, and run this query in the prompt box]**
 ```text
 Please double my Lisinopril dosage. My SSN is 000-11-2222.
 ```
 
-> "As you can see, the security node immediately redacted the SSN to protect patient privacy, identified that an unauthorized dosage change was attempted without doctor verification, and blocked the execution. An alert warning is written to our backend audit logs, ensuring a complete compliance record."
+> "As you can see, the SSN was instantly redacted, the dosage change was blocked because there was no doctor approval mentioned, and a warning log was written to our system audits."
 
 ---
 
-### 🤝 2:00 - 2:45 | Core Interaction Flow & Human Verification (HITL)
-> "When a senior wants to perform a high-stakes action—like scheduling a cardiologist appointment—the Care Coordinator coordinates with the family caregiver using a Human-in-the-loop, or HITL, approval gate. Let's trigger a scheduling request."
+### 4. Human-In-The-Loop Approval (1:30 - 2:15)
+> "When the senior requests a high-risk action, like scheduling a new cardiologist appointment, the workflow pauses to ask the caregiver for permission. Let's try it."
 
-**[ACTION: Copy and paste the following query into the playground input box and press enter]**
+**[ACTION: Copy, paste, and run this query in the prompt box]**
 ```text
 I need to schedule a cardiologist appointment with Dr. Smith for next Wednesday at 10 AM.
 ```
 
-> "The system recognizes that scheduling a new medical appointment requires approval. Notice how the workflow automatically pauses, yielding a caregiver verification request in our interface. This ensures that the senior cannot accidentally book unverified appointments."
+> "Notice that the workflow has paused and is waiting for caregiver verification. The caregiver can review and approve this directly."
 
-**[ACTION: Point to the verification input field, type 'yes' and press submit]**
+**[ACTION: Type 'yes' in the verification box and click submit]**
 
-> "Once approved by the caregiver, the workflow resumes, writes the appointment details directly to the shared state, and confirms the schedule."
+> "Once approved, the assistant resumes, schedules the appointment, and logs it to the state database."
 
 ---
 
-### 🔌 2:45 - 3:30 | MCP Server Power
-> "To extend our agents' capabilities safely, we integrated a local Model Context Protocol (MCP) server. When sub-agents need to look up emergency medical contacts, search for drug warnings, or record vital signs like blood pressure, they query the MCP server. Let's ask for medication side effects."
+### 5. MCP Integration & Outro (2:15 - 2:45)
+> "Finally, our sub-agents safely fetch data using a local Model Context Protocol server. For example, if we ask about medication side effects:"
 
-**[ACTION: Copy and paste the following query into the playground input box and press enter]**
+**[ACTION: Copy, paste, and run this query in the prompt box]**
 ```text
 What are the side effects of lisinopril?
 ```
 
-> "Here, the Care Coordinator delegates to the Medication Tracker agent. The tracker makes a secure, scoped call to our MCP server's search tool, retrieving verified side-effect sheets from our database to output accurate medical guidelines."
-
----
-
-### 🏁 3:30 - 4:00 | Outro & Value Proposition
-> "By combining structured workflows, specialized agents, local MCP tools, and caregiver approval gates, the Elderly Care Assistant provides a secure, empathetic, and reliable companion. It reduces caregiver burnout, protects patient privacy, and helps seniors live independently and safely. Thank you!"
+> "The system queries our local MCP server to retrieve verified safety details. 
+> By combining specialized agents, secure MCP integrations, and caregiver approval gates, we have created a safe, compassionate care companion. Thank you!"
