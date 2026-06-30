@@ -142,19 +142,3 @@ Use the following test cases in the playground interface to verify system functi
         ```
 
 ---
-
-## 📤 Push to GitHub
-
-1. Create a new repo at https://github.com/new
-   - Name: `elderly-care-assistant`
-   - Visibility: Public or Private
-   - Do **NOT** initialize with README
-
-2. Open your terminal, navigate into your project folder and run:
-   ```bash
-   git push -u origin main
-   ```
-
-*Note: If Git asks you to authenticate, make sure to log in using the correct **`Litheshan07`** account.*
-
-⚠ **IMPORTANT:** Never commit or push the `.env` file to GitHub. Your API key will be exposed.
